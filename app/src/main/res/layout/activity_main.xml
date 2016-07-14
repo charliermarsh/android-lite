@@ -8,4 +8,9 @@
     tools:context="org.khanacademy.androidlite.MainActivity"
     >
 
+    <include
+        android:id="@+id/topic_view"
+        layout="@layout/topic_grid_view"
+        />
+
 </FrameLayout>
