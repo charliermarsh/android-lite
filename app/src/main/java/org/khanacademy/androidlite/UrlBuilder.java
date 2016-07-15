@@ -7,10 +7,10 @@ import java.net.URL;
  * Created by charliemarsh on 7/14/16.
  */
 
-public final class RequestCreator {
+public final class UrlBuilder {
     private static final String baseUrl = "http://10.0.2.2:5000";
 
-    public static URL urlForPath(final String path) {
+    public static URL forPath(final String path) {
         try {
             return new URL(baseUrl + path);
         } catch (final MalformedURLException e) {

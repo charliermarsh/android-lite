@@ -1,15 +1,12 @@
 package org.khanacademy.androidlite;
 
-/**
- * Created by charliemarsh on 7/14/16.
- */
-
-public class Topic {
-    public final String slug;
-    public final String title;
+public class Topic extends Node {
+    @Override
+    public Kind kind() {
+        return Kind.TOPIC;
+    }
 
     public Topic(final String slug, final String title) {
-        this.slug = slug;
-        this.title = title;
+        super(slug, title);
     }
 }

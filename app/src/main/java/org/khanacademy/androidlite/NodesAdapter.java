@@ -9,14 +9,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class TopicAdapter extends ArrayAdapter<Topic> {
-    public TopicAdapter(final Context context, final int resource, final List<Topic> topics) {
-        super(context, resource, topics);
+public class NodesAdapter extends ArrayAdapter<Node> {
+    private final Action1<Node> mNavigationListener;
+
+    public NodesAdapter(final Context context,
+                        final List<Node> nodes,
+                        final Action1<Node> navigationListener) {
+        super(context, R.layout.topic_icon, nodes);
+
+        mNavigationListener = navigationListener;
     }
 
     @Override
     public View getView(final int position, final View convertView, final ViewGroup parent) {
-        final Topic topic = getItem(position);
+        final Node node = getItem(position);
 
         final View outputView;
         if (convertView == null) {
@@ -27,8 +33,12 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
             outputView = convertView;
         }
 
+        // Add the title.
         final TextView topicNameView = (TextView) outputView.findViewById(R.id.topic_name);
-        topicNameView.setText(topic.title);
+        topicNameView.setText(node.title);
+
+        // Setup the click listener.
+        outputView.setOnClickListener(v -> mNavigationListener.call(node));
 
         return outputView;
     }
