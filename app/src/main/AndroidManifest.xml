@@ -18,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".NodeListActivity">
+        </activity>
+
+        <activity android:name=".VideoActivity">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

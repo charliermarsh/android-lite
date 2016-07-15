@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -33,13 +32,8 @@ public class NodesAdapter extends ArrayAdapter<Node> {
             outputView = (NodeCard) convertView;
         }
 
-        // Add the title.
-        final TextView topicNameView = (TextView) outputView.findViewById(R.id.topic_name);
-        topicNameView.setText(node.title);
-
-        outputView.setOnClickListener(v -> mNavigationListener.call(node));
-
         outputView.updateData(node);
+        outputView.setOnClickListener(v -> mNavigationListener.call(node));
 
         return outputView;
     }
