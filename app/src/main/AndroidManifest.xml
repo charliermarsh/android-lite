@@ -22,7 +22,11 @@
         <activity android:name=".NodeListActivity">
         </activity>
 
-        <activity android:name=".VideoActivity">
+        <activity
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden"
+            android:name=".VideoActivity"
+            android:theme="@style/VideoTheme">
         </activity>
     </application>
 
