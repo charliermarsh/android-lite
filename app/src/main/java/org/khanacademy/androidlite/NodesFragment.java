@@ -71,7 +71,7 @@ public class NodesFragment extends Fragment {
     private void onNodesFetched(final List<Node> nodes) {
         final ListView nodesView = (ListView) getView().findViewById(R.id.nodes_view);
         nodesView.setAdapter(
-                new NodesAdapter(getContext(), nodes, this::onNodeSelected)
+                new NodesAdapter(getActivity(), nodes, this::onNodeSelected)
         );
 
         // Prefetch a few of the child nodes.

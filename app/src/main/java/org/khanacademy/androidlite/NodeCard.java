@@ -2,7 +2,11 @@ package org.khanacademy.androidlite;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -25,17 +29,37 @@ public class NodeCard extends FrameLayout {
 
         // Set the topic title.
         mTopicNameView.setText(node.title);
-        mTopicNameView.setTextColor(colorPalette.text);
 
-        final RippleDrawable rippleDrawable = (RippleDrawable) getBackground();
-        rippleDrawable.setColor(new ColorStateList(
-                new int[][] { new int[]{}
-                        },
-                new int[]
-                        {
-                                colorPalette.pressed
-                        }
-        ));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final RippleDrawable rippleDrawable = (RippleDrawable) getBackground();
+            rippleDrawable.setColor(new ColorStateList(
+                    new int[][] { new int[]{}
+                    },
+                    new int[]
+                            {
+                                    colorPalette.pressed
+                            }
+            ));
+
+            mTopicNameView.setTextColor(colorPalette.text);
+        } else {
+            final StateListDrawable stateListDrawable = (StateListDrawable) getBackground();
+            stateListDrawable.addState(
+                    new int[]{android.R.attr.state_pressed},
+                    new ColorDrawable(colorPalette.pressed)
+            );
+
+            mTopicNameView.setTextColor(new ColorStateList(
+                    new int[][]{
+                            new int[]{android.R.attr.state_pressed},
+                            new int[]{}
+                    },
+                    new int[] {
+                            Color.WHITE,
+                            colorPalette.text
+                    }
+            ));
+        }
 
     }
 }

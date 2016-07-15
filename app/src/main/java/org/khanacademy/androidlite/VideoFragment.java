@@ -35,7 +35,7 @@ public class VideoFragment extends Fragment {
         videoView.start();
 
         // Add a MediaController, which gives us play/pause, etc.
-        final MediaController mediaController = new MediaController(getContext());
+        final MediaController mediaController = new MediaController(getActivity());
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
 
