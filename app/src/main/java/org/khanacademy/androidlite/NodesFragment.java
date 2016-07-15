@@ -43,6 +43,8 @@ public class NodesFragment extends Fragment {
                     }
                 }
         );
+
+//        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -85,7 +87,7 @@ public class NodesFragment extends Fragment {
         // Add it to the activity.
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_topics, fragment);
+        fragmentTransaction.add(R.id.fragment_topics, fragment).addToBackStack(topic.slug);
         fragmentTransaction.commit();
     }
 
@@ -102,7 +104,7 @@ public class NodesFragment extends Fragment {
         // Add it to the activity.
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_topics, fragment);
+        fragmentTransaction.add(R.id.fragment_topics, fragment).addToBackStack(contentItem.slug);
         fragmentTransaction.commit();
     }
 }

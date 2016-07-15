@@ -15,11 +15,16 @@ public class VideoFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(final LayoutInflater inflater,
                              final ViewGroup container,
                              final Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_content_item, container, false
+                R.layout.fragment_video, container, false
         );
 
         // Load the appropriate URL in the VideoView.
