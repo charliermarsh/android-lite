@@ -20,6 +20,9 @@ public class MainActivity extends Activity implements FragmentManager.OnBackStac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getActionBar().setDisplayUseLogoEnabled(true);
+        getActionBar().setDisplayShowTitleEnabled(false);
+
         enableHttpResponseCache();
 
         // Respond to changes in the backstack, so as to dynamically enable and disable the up
