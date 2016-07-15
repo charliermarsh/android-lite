@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_topics"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -9,7 +8,7 @@
 
     <include
         android:id="@+id/nodes_view"
-        layout="@layout/nodes_view"
+        layout="@layout/node_list_view"
         />
 
 </FrameLayout>
