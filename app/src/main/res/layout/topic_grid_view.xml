@@ -9,5 +9,4 @@
     android:numColumns="auto_fit"
     android:stretchMode="columnWidth"
     android:verticalSpacing="10dp"
-    android:background="@android:color/holo_blue_dark"
     />

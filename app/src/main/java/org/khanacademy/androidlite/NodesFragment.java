@@ -18,6 +18,7 @@ public class NodesFragment extends Fragment {
     private static final int MAX_PREFETCHED_TOPICS = 5;
 
     static final class Keys {
+        static final String PARENT_DOMAIN_SLUG = "parentDomainSlug";
         static final String PARENT_SLUG = "parentSlug";
     }
 
@@ -40,7 +41,7 @@ public class NodesFragment extends Fragment {
                         onNodesFetched(nodes);
                     } catch (final JSONException e) {
                         throw new RuntimeException(
-                                "Failed to find children of topic: " + jsonObject.toString()
+                                "Failed to find children at path: " + path, e
                         );
                     }
                 }
@@ -51,7 +52,20 @@ public class NodesFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater,
                              final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_nodes, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_nodes, container, false);
+
+        // Color the background, if appropriate.
+        final String parentDomainSlug = getArguments().getString(Keys.PARENT_DOMAIN_SLUG);
+        if (parentDomainSlug != null) {
+            final Domain parentDomain = Domain.getDomainBySlug(parentDomainSlug);
+            final ColorPalette parentDomainPalette = ColorPalette.forDomain(
+                    parentDomain,
+                    getContext()
+            );
+            rootView.setBackgroundColor(parentDomainPalette.dark);
+        }
+
+        return rootView;
     }
 
     private void onNodesFetched(final List<Node> nodes) {
@@ -86,7 +100,8 @@ public class NodesFragment extends Fragment {
     private void navigateToTopic(final Topic topic) {
         // Assemble the data.
         final Bundle arguments = new Bundle();
-        arguments.putString(NodesFragment.Keys.PARENT_SLUG, topic.slug);
+        arguments.putString(Keys.PARENT_SLUG, topic.slug);
+        arguments.putString(Keys.PARENT_DOMAIN_SLUG, topic.domain.slug);
 
         // Build the fragment.
         final NodesFragment fragment = new NodesFragment();

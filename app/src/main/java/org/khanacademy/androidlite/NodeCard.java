@@ -6,10 +6,10 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class TopicCard extends FrameLayout {
+public class NodeCard extends FrameLayout {
     private TextView mTopicNameView;
 
-    public TopicCard(final Context context, final AttributeSet attrs) {
+    public NodeCard(final Context context, final AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -19,9 +19,9 @@ public class TopicCard extends FrameLayout {
         mTopicNameView = (TextView) findViewById(R.id.topic_name);
     }
 
-    public void updateData(final Topic topic) {
+    public void updateData(final Node node) {
         // Set the background color based on the domain.
-        final ColorPalette colorPalette = ColorPalette.forDomain(topic.domain, getContext());
+        final ColorPalette colorPalette = ColorPalette.forDomain(node.domain, getContext());
 
         getBackground().setColorFilter(
                 colorPalette.light,
@@ -29,7 +29,7 @@ public class TopicCard extends FrameLayout {
         );
 
         // Set the topic title.
-        mTopicNameView.setText(topic.title);
+        mTopicNameView.setText(node.title);
         mTopicNameView.setTextColor(colorPalette.text);
     }
 }

@@ -24,13 +24,13 @@ public class NodesAdapter extends ArrayAdapter<Node> {
     public View getView(final int position, final View convertView, final ViewGroup parent) {
         final Node node = getItem(position);
 
-        final TopicCard outputView;
+        final NodeCard outputView;
         if (convertView == null) {
-            outputView = (TopicCard) LayoutInflater
+            outputView = (NodeCard) LayoutInflater
                     .from(getContext())
                     .inflate(R.layout.topic_icon, parent, false);
         } else {
-            outputView = (TopicCard) convertView;
+            outputView = (NodeCard) convertView;
         }
 
         // Add the title.
@@ -39,7 +39,7 @@ public class NodesAdapter extends ArrayAdapter<Node> {
 
         outputView.setOnClickListener(v -> mNavigationListener.call(node));
 
-        outputView.updateData((Topic) node);
+        outputView.updateData(node);
 
         return outputView;
     }
