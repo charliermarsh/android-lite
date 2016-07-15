@@ -15,7 +15,7 @@ public class NodesAdapter extends ArrayAdapter<Node> {
     public NodesAdapter(final Context context,
                         final List<Node> nodes,
                         final Action1<Node> navigationListener) {
-        super(context, R.layout.topic_icon, nodes);
+        super(context, R.layout.node_card, nodes);
 
         mNavigationListener = navigationListener;
     }
@@ -28,7 +28,7 @@ public class NodesAdapter extends ArrayAdapter<Node> {
         if (convertView == null) {
             outputView = (NodeCard) LayoutInflater
                     .from(getContext())
-                    .inflate(R.layout.topic_icon, parent, false);
+                    .inflate(R.layout.node_card, parent, false);
         } else {
             outputView = (NodeCard) convertView;
         }

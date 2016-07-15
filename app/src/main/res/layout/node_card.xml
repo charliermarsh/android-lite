@@ -3,12 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/icon_background"
+    android:background="@drawable/node_card_background"
+    android:paddingBottom="@dimen/node_row_padding_vertical"
+    android:paddingLeft="@dimen/node_row_padding_horizontal"
+    android:paddingRight="@dimen/node_row_padding_horizontal"
+    android:paddingTop="@dimen/node_row_padding_vertical"
     >
 
     <TextView
         android:id="@+id/topic_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.Title"
         />
 </org.khanacademy.androidlite.NodeCard>

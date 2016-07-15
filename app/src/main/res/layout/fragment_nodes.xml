@@ -4,11 +4,12 @@
     android:id="@+id/fragment_topics"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     >
 
     <include
-        android:id="@+id/topic_view"
-        layout="@layout/topic_grid_view"
+        android:id="@+id/nodes_view"
+        layout="@layout/nodes_view"
         />
 
 </FrameLayout>

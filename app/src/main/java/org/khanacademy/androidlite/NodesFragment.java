@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -55,22 +55,22 @@ public class NodesFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_nodes, container, false);
 
         // Color the background, if appropriate.
-        final String parentDomainSlug = getArguments().getString(Keys.PARENT_DOMAIN_SLUG);
-        if (parentDomainSlug != null) {
-            final Domain parentDomain = Domain.getDomainBySlug(parentDomainSlug);
-            final ColorPalette parentDomainPalette = ColorPalette.forDomain(
-                    parentDomain,
-                    getContext()
-            );
-            rootView.setBackgroundColor(parentDomainPalette.dark);
-        }
+//        final String parentDomainSlug = getArguments().getString(Keys.PARENT_DOMAIN_SLUG);
+//        if (parentDomainSlug != null) {
+//            final Domain parentDomain = Domain.getDomainBySlug(parentDomainSlug);
+//            final ColorPalette parentDomainPalette = ColorPalette.forDomain(
+//                    parentDomain,
+//                    getContext()
+//            );
+//            rootView.setBackgroundColor(parentDomainPalette.dark);
+//        }
 
         return rootView;
     }
 
     private void onNodesFetched(final List<Node> nodes) {
-        final GridView topicGridView = (GridView) getView().findViewById(R.id.topic_view);
-        topicGridView.setAdapter(
+        final ListView nodesView = (ListView) getView().findViewById(R.id.nodes_view);
+        nodesView.setAdapter(
                 new NodesAdapter(getContext(), nodes, this::onNodeSelected)
         );
 
