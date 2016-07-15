@@ -33,12 +33,12 @@ public class NodeCard extends FrameLayout {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final RippleDrawable rippleDrawable = (RippleDrawable) getBackground();
             rippleDrawable.setColor(new ColorStateList(
-                    new int[][] { new int[]{}
+                    new int[][]{
+                            new int[]{}
                     },
-                    new int[]
-                            {
-                                    colorPalette.pressed
-                            }
+                    new int[]{
+                            colorPalette.pressed
+                    }
             ));
 
             mTopicNameView.setTextColor(colorPalette.text);
@@ -49,6 +49,7 @@ public class NodeCard extends FrameLayout {
                     new ColorDrawable(colorPalette.pressed)
             );
 
+            // TODO(charlie): Dynamic text coloration doesn't seem to work on API 13 and below.
             mTopicNameView.setTextColor(new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_pressed},

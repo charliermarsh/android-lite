@@ -1,9 +1,11 @@
 package org.khanacademy.androidlite;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.net.http.HttpResponseCache;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -23,7 +25,9 @@ public class MainActivity extends Activity implements FragmentManager.OnBackStac
         getActionBar().setDisplayUseLogoEnabled(true);
         getActionBar().setDisplayShowTitleEnabled(false);
 
-        enableHttpResponseCache();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            enableHttpResponseCache();
+        }
 
         // Respond to changes in the backstack, so as to dynamically enable and disable the up
         // navigation button.
@@ -46,9 +50,11 @@ public class MainActivity extends Activity implements FragmentManager.OnBackStac
 
     @Override
     protected void onStop() {
-        final HttpResponseCache cache = HttpResponseCache.getInstalled();
-        if (cache != null) {
-            cache.flush();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            final HttpResponseCache cache = HttpResponseCache.getInstalled();
+            if (cache != null) {
+                cache.flush();
+            }
         }
 
         super.onStop();
@@ -71,6 +77,7 @@ public class MainActivity extends Activity implements FragmentManager.OnBackStac
         getActionBar().setDisplayHomeAsUpEnabled(allowUpNavigation);
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void enableHttpResponseCache() {
         final long httpCacheSize = 10 * 1024 * 1024;
         final File httpCacheDir = new File(getCacheDir(), "http");
