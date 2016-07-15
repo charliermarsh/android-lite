@@ -1,6 +1,9 @@
 package org.khanacademy.androidlite;
 
+import static org.khanacademy.androidlite.Utils.checkNotNull;
+
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.net.http.HttpResponseCache;
@@ -22,15 +25,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            getActionBar().setDisplayUseLogoEnabled(true);
-            getActionBar().setDisplayShowTitleEnabled(false);
+            final ActionBar actionBar = checkNotNull(getActionBar());
+            actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
 
             // Respond to changes in the backstack, so as to dynamically enable and disable the up
             // navigation button.
             final FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.addOnBackStackChangedListener(() -> {
                 final boolean allowUpNavigation = fragmentManager.getBackStackEntryCount() > 1;
-                getActionBar().setDisplayHomeAsUpEnabled(allowUpNavigation);
+                actionBar.setDisplayHomeAsUpEnabled(allowUpNavigation);
             });
         }
 
@@ -40,6 +44,7 @@ public class MainActivity extends Activity {
 
         // Launch the root topic intent.
         startActivity(IntentCreator.forAllSubjects(this));
+        finish();
     }
 
     @Override
