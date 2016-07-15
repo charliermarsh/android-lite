@@ -15,6 +15,8 @@ import android.widget.GridView;
 import java.util.List;
 
 public class NodesFragment extends Fragment {
+    private static final int MAX_PREFETCHED_TOPICS = 5;
+
     static final class Keys {
         static final String PARENT_SLUG = "parentSlug";
     }
@@ -57,6 +59,14 @@ public class NodesFragment extends Fragment {
         topicGridView.setAdapter(
                 new NodesAdapter(getContext(), nodes, this::onNodeSelected)
         );
+
+        // Prefetch a few of the child nodes.
+        final int numNodesToPrefetch = Math.min(nodes.size(), MAX_PREFETCHED_TOPICS);
+        for (final Node node : nodes.subList(0, numNodesToPrefetch)) {
+            if (node.kind() == Kind.TOPIC) {
+                JsonFetcher.prefetchJson(UrlBuilder.forPath("/topic/" + node.slug));
+            }
+        }
     }
 
     private void onNodeSelected(final Node node) {

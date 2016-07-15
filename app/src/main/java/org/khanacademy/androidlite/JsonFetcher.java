@@ -14,6 +14,10 @@ import java.net.URL;
 public final class JsonFetcher {
     private static final int TIMEOUT_MS = 10000;
 
+    public static void prefetchJson(final URL url) {
+        fetchJsonAsync(url, jsonObject -> {});
+    }
+
     public static JSONObject fetchJson(final URL url) throws IOException, JSONException {
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
