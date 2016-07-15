@@ -1,5 +1,7 @@
 package org.khanacademy.androidlite;
 
+import static org.khanacademy.androidlite.Utils.checkNotNull;
+
 public class ContentItem extends Node {
     public final String youtubeId;
 
@@ -9,7 +11,7 @@ public class ContentItem extends Node {
                        final String youtubeId) {
         super(slug, title, domain);
 
-        this.youtubeId = youtubeId;
+        this.youtubeId = checkNotNull(youtubeId);
     }
 
     @Override

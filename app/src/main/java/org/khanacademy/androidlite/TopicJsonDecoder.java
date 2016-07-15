@@ -12,7 +12,6 @@ public final class TopicJsonDecoder implements JsonDecoder<JSONObject, Topic> {
 
     @Override
     public Topic fromJson(final JSONObject jsonObject) throws JSONException {
-        System.out.println("DOMAIN " + jsonObject.getString(JsonKeys.DOMAIN_SLUG));
         return new Topic(
                 jsonObject.getString(JsonKeys.SLUG),
                 jsonObject.getString(JsonKeys.TITLE),

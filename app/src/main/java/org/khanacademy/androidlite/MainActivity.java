@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainActivity extends Activity implements FragmentManager.OnBackStackChangedListener {
     @Override
@@ -78,19 +80,23 @@ public class MainActivity extends Activity implements FragmentManager.OnBackStac
         }
 
         // Report on the cache status periodically.
+        final Logger cacheLogger = Logger.getLogger(HttpResponseCache.class.getSimpleName());
         final Timer reportingTimer = new Timer();
         final long initialDelayMs = 1000;
         final long periodMs = 3000;
         reportingTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println(String.format(
-                        "[Cache] Requests=%d, Hits=%d, Networks=%d -- Total size=%d bytes",
-                        cache.getRequestCount(),
-                        cache.getHitCount(),
-                        cache.getNetworkCount(),
-                        cache.size()
-                ));
+                cacheLogger.log(
+                        Level.INFO,
+                        String.format(
+                                "Requests=%d, Hits=%d, Networks=%d -- Total size=%d bytes",
+                                cache.getRequestCount(),
+                                cache.getHitCount(),
+                                cache.getNetworkCount(),
+                                cache.size()
+                        )
+                );
             }
         }, initialDelayMs, periodMs);
     }

@@ -12,7 +12,6 @@ public abstract class Node {
     public Node(final String slug, final String title, final Domain domain) {
         this.slug = checkNotNull(slug);
         this.title = checkNotNull(title);
-        System.out.println("Slug etc " + slug + " " + title);
         this.domain = checkNotNull(domain);
     }
 }
