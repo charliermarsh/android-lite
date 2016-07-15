@@ -8,11 +8,13 @@ import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class NodeCard extends FrameLayout {
-    private TextView mTopicNameView;
+    private TextView mNodeNameView;
+    private View mNodeIconView;
 
     public NodeCard(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -21,14 +23,18 @@ public class NodeCard extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mTopicNameView = (TextView) findViewById(R.id.topic_name);
+        mNodeNameView = (TextView) findViewById(R.id.node_name);
+        mNodeIconView = findViewById(R.id.node_icon);
     }
 
     public void updateData(final Node node) {
         final ColorPalette colorPalette = ColorPalette.forDomain(node.domain, getContext());
 
         // Set the topic title.
-        mTopicNameView.setText(node.title);
+        mNodeNameView.setText(node.title);
+
+        // Display an icon, if necessary.
+        mNodeIconView.setVisibility(node.kind() == Kind.CONTENT_ITEM ? VISIBLE : GONE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final RippleDrawable rippleDrawable = (RippleDrawable) getBackground();
@@ -41,7 +47,7 @@ public class NodeCard extends FrameLayout {
                     }
             ));
 
-            mTopicNameView.setTextColor(colorPalette.text);
+            mNodeNameView.setTextColor(colorPalette.text);
         } else {
             final StateListDrawable stateListDrawable = (StateListDrawable) getBackground();
             stateListDrawable.addState(
@@ -50,7 +56,7 @@ public class NodeCard extends FrameLayout {
             );
 
             // TODO(charlie): Dynamic text coloration doesn't seem to work on API 13 and below.
-            mTopicNameView.setTextColor(new ColorStateList(
+            mNodeNameView.setTextColor(new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_pressed},
                             new int[]{}

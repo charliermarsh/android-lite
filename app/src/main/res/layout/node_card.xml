@@ -2,7 +2,7 @@
 <org.khanacademy.androidlite.NodeCard
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/node_card_background"
     android:paddingBottom="@dimen/node_row_padding_vertical"
     android:paddingLeft="@dimen/node_row_padding_horizontal"
@@ -11,9 +11,21 @@
     >
 
     <TextView
-        android:id="@+id/topic_name"
+        android:id="@+id/node_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginRight="58dp"
         android:textAppearance="@style/TextAppearance.Title"
         />
+
+    <View
+        android:id="@+id/node_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_play_arrow_black"
+        android:layout_gravity="right|center_vertical"
+        android:visibility="gone"
+        />
+
 </org.khanacademy.androidlite.NodeCard>

@@ -1,4 +1,6 @@
 <resources>
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="AppTheme" parent="android:Theme.Light">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
     <style name="VideoTheme" parent="android:Theme.NoTitleBar.Fullscreen" />
 </resources>

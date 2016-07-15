@@ -3,10 +3,6 @@ package org.khanacademy.androidlite;
 import android.content.Context;
 import android.content.Intent;
 
-/**
- * Created by charliemarsh on 7/15/16.
- */
-
 public final class IntentCreator {
     private IntentCreator() {}
 
