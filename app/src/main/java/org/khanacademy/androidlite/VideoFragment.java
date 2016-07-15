@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 public class VideoFragment extends Fragment {
     static final class Keys {
@@ -16,6 +18,22 @@ public class VideoFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater,
                              final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_content_item, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(
+                R.layout.fragment_content_item, container, false
+        );
+
+        // Load the appropriate URL in the VideoView.
+        final String youtubeId = getArguments().getString(Keys.YOUTUBE_ID);
+        final String videoUrl = UrlBuilder.forYoutubeId(youtubeId);
+        final VideoView videoView = (VideoView) rootView.findViewById(R.id.video_view);
+        videoView.setVideoPath(videoUrl);
+        videoView.start();
+
+        // Add a MediaController, which gives us play/pause, etc.
+        final MediaController mediaController = new MediaController(getContext());
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
+
+        return rootView;
     }
 }
