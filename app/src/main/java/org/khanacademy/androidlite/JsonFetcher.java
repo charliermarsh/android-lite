@@ -47,14 +47,14 @@ public final class JsonFetcher {
     }
 
     public static void fetchJsonAsync(final URL url, final Action1<JSONObject> onFetch) {
-        final JsonFetchTask asyncTask = new JsonFetchTask(onFetch);
+        final FetchJsonTask asyncTask = new FetchJsonTask(onFetch);
         asyncTask.execute(url);
     }
 
-    private static class JsonFetchTask extends AsyncTask<URL, Boolean, JSONObject> {
+    private static class FetchJsonTask extends AsyncTask<URL, Void, JSONObject> {
         private final Action1<JSONObject> mOnFetch;
 
-        JsonFetchTask(final Action1<JSONObject> onFetch) {
+        FetchJsonTask(final Action1<JSONObject> onFetch) {
             mOnFetch = onFetch;
         }
 
@@ -73,9 +73,6 @@ public final class JsonFetcher {
 
             return jsonObject;
         }
-
-        @Override
-        protected void onProgressUpdate(final Boolean... progress) {}
 
         @Override
         protected void onPostExecute(final JSONObject jsonObject) {

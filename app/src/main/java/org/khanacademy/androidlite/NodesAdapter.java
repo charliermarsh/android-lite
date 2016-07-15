@@ -37,6 +37,10 @@ public class NodesAdapter extends ArrayAdapter<Node> {
         final TextView topicNameView = (TextView) outputView.findViewById(R.id.topic_name);
         topicNameView.setText(node.title);
 
+        // Download the thumbnail.
+//        final ImageView topicIconView = (ImageView) outputView.findViewById(R.id.topic_icon);
+//        ImageDownloader.downloadImage(topicIconView, UrlBuilder.forThumbnail(node.slug));
+
         // Setup the click listener.
         outputView.setOnClickListener(v -> mNavigationListener.call(node));
 

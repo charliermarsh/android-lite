@@ -43,8 +43,6 @@ public class NodesFragment extends Fragment {
                     }
                 }
         );
-
-//        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

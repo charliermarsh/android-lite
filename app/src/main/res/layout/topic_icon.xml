@@ -6,6 +6,12 @@
     android:background="@android:color/holo_red_dark"
     >
 
+    <ImageView
+        android:id="@+id/topic_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
     <TextView
         android:id="@+id/topic_name"
         android:layout_width="match_parent"

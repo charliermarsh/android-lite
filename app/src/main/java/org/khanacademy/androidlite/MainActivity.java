@@ -77,6 +77,7 @@ public class MainActivity extends Activity implements FragmentManager.OnBackStac
             throw new RuntimeException("Failed to install cache", e);
         }
 
+        // Report on the cache status periodically.
         final Timer reportingTimer = new Timer();
         final long initialDelayMs = 1000;
         final long periodMs = 3000;

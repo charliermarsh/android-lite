@@ -3,10 +3,6 @@ package org.khanacademy.androidlite;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by charliemarsh on 7/14/16.
- */
-
 public final class UrlBuilder {
     private static final String BASE_URL = "http://10.0.2.2:5000";
     private static final String MP4_DOWNLOAD_URL_TEMPLATE =
@@ -15,6 +11,14 @@ public final class UrlBuilder {
     public static URL forPath(final String path) {
         try {
             return new URL(BASE_URL + path);
+        } catch (final MalformedURLException e) {
+            throw new RuntimeException("Invalid extension: " + path);
+        }
+    }
+
+    public static URL forThumbnail(final String path) {
+        try {
+            return new URL(BASE_URL + "/thumbnail/" + path);
         } catch (final MalformedURLException e) {
             throw new RuntimeException("Invalid extension: " + path);
         }
