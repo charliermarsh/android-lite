@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<org.khanacademy.androidlite.TopicCard
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_dark"
+    android:background="@drawable/icon_background"
     >
-
-    <ImageView
-        android:id="@+id/topic_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
 
     <TextView
         android:id="@+id/topic_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-</FrameLayout>
+</org.khanacademy.androidlite.TopicCard>

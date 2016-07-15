@@ -6,7 +6,7 @@ public class Topic extends Node {
         return Kind.TOPIC;
     }
 
-    public Topic(final String slug, final String title) {
-        super(slug, title);
+    public Topic(final String slug, final String title, final Domain domain) {
+        super(slug, title, domain);
     }
 }

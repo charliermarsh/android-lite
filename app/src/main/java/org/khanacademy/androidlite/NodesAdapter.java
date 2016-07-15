@@ -24,25 +24,22 @@ public class NodesAdapter extends ArrayAdapter<Node> {
     public View getView(final int position, final View convertView, final ViewGroup parent) {
         final Node node = getItem(position);
 
-        final View outputView;
+        final TopicCard outputView;
         if (convertView == null) {
-            outputView = LayoutInflater
+            outputView = (TopicCard) LayoutInflater
                     .from(getContext())
                     .inflate(R.layout.topic_icon, parent, false);
         } else {
-            outputView = convertView;
+            outputView = (TopicCard) convertView;
         }
 
         // Add the title.
         final TextView topicNameView = (TextView) outputView.findViewById(R.id.topic_name);
         topicNameView.setText(node.title);
 
-        // Download the thumbnail.
-//        final ImageView topicIconView = (ImageView) outputView.findViewById(R.id.topic_icon);
-//        ImageDownloader.downloadImage(topicIconView, UrlBuilder.forThumbnail(node.slug));
-
-        // Setup the click listener.
         outputView.setOnClickListener(v -> mNavigationListener.call(node));
+
+        outputView.updateData((Topic) node);
 
         return outputView;
     }

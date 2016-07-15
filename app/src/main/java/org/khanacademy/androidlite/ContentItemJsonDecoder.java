@@ -7,6 +7,7 @@ public final class ContentItemJsonDecoder implements JsonDecoder<JSONObject, Con
     private static class JsonKeys {
         private static final String READABLE_ID = "readableId";
         private static final String TITLE = "title";
+        private static final String DOMAIN_SLUG = "domainSlug";
         private static final String YOUTUBE_ID = "youtubeId";
     }
 
@@ -15,6 +16,7 @@ public final class ContentItemJsonDecoder implements JsonDecoder<JSONObject, Con
         return new ContentItem(
                 jsonObject.getString(JsonKeys.READABLE_ID),
                 jsonObject.getString(JsonKeys.TITLE),
+                Domain.getDomainBySlug(jsonObject.getString(JsonKeys.DOMAIN_SLUG)),
                 jsonObject.getString(JsonKeys.YOUTUBE_ID)
         );
     }
