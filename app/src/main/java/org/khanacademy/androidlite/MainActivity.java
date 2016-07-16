@@ -5,14 +5,13 @@ import static org.khanacademy.androidlite.Utils.checkNotNull;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.net.http.HttpResponseCache;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -28,14 +27,6 @@ public class MainActivity extends Activity {
             final ActionBar actionBar = checkNotNull(getActionBar());
             actionBar.setDisplayUseLogoEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
-
-            // Respond to changes in the backstack, so as to dynamically enable and disable the up
-            // navigation button.
-            final FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.addOnBackStackChangedListener(() -> {
-                final boolean allowUpNavigation = fragmentManager.getBackStackEntryCount() > 1;
-                actionBar.setDisplayHomeAsUpEnabled(allowUpNavigation);
-            });
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -57,19 +48,6 @@ public class MainActivity extends Activity {
         }
 
         super.onStop();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    final FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.popBackStack();
-                    return true;
-                }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -95,6 +73,7 @@ public class MainActivity extends Activity {
                 cacheLogger.log(
                         Level.INFO,
                         String.format(
+                                Locale.ENGLISH,
                                 "Requests=%d, Hits=%d, Networks=%d -- Total size=%d bytes",
                                 cache.getRequestCount(),
                                 cache.getHitCount(),
