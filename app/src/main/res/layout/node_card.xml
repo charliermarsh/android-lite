@@ -15,16 +15,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="left|center_vertical"
-        android:layout_marginRight="58dp"
+        android:layout_marginRight="64dp"
         android:textAppearance="@style/TextAppearance.Title"
         />
 
     <View
         android:id="@+id/node_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/ic_play_arrow_black"
+        android:layout_width="@dimen/node_icon_size"
+        android:layout_height="@dimen/node_icon_size"
         android:layout_gravity="right|center_vertical"
+        android:background="@drawable/ic_play_arrow_black"
         android:visibility="gone"
         />
 
