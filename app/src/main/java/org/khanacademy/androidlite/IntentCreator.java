@@ -13,7 +13,10 @@ public final class IntentCreator {
     public static Intent forTopic(final Topic topic, final Context context) {
         final Intent intent = new Intent(context, NodeListActivity.class);
         intent.putExtra(NodeListActivity.Keys.PARENT_SLUG, topic.slug);
-        intent.putExtra(NodeListActivity.Keys.PARENT_DOMAIN_SLUG, topic.domain.slug);
+        intent.putExtra(
+                NodeListActivity.Keys.PARENT_DOMAIN_SLUG,
+                Domain.getSlugForDomain(topic.domain)
+        );
         intent.putExtra(NodeListActivity.Keys.TITLE, topic.title);
         return intent;
     }

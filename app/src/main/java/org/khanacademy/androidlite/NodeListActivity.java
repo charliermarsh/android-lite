@@ -73,11 +73,11 @@ public class NodeListActivity extends Activity {
 
     private void onNodeSelected(final Node node) {
         switch (node.kind()) {
-            case TOPIC:
+            case Kind.TOPIC:
                 navigateToTopic((Topic) node);
                 return;
 
-            case CONTENT_ITEM:
+            case Kind.CONTENT_ITEM:
                 navigateToContentItem((ContentItem) node);
                 return;
         }

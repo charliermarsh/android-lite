@@ -7,7 +7,7 @@ public class ContentItem extends Node {
 
     public ContentItem(final String slug,
                        final String title,
-                       final Domain domain,
+                       final int domain,
                        final String youtubeId) {
         super(slug, title, domain);
 
@@ -15,7 +15,7 @@ public class ContentItem extends Node {
     }
 
     @Override
-    public Kind kind() {
+    public int kind() {
         return Kind.CONTENT_ITEM;
     }
 }

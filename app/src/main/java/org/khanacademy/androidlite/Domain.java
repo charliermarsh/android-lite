@@ -3,31 +3,44 @@ package org.khanacademy.androidlite;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Domain {
-    MATH("math"),
-    SCIENCE("science"),
-    FINANCE("economics-finance-domain"),
-    HUMANITIES("humanities"),
-    COMPUTER_SCIENCE("computing"),
-    TEST_PREP("test-prep"),
-    PARTNER_CONTENT("partner-content"),
-    DEFAULT("default");
-
-    private static final Map<String, Domain> DOMAIN_SLUGS;
+public final class Domain {
+    public static final int MATH;
+    public static final int SCIENCE;
+    public static final int FINANCE;
+    public static final int HUMANITIES;
+    public static final int COMPUTER_SCIENCE;
+    public static final int TEST_PREP;
+    public static final int PARTNER_CONTENT;
+    public static final int DEFAULT;
 
     static {
-        final Map<String, Domain> domainSlugs =  new HashMap<>();
-        for (final Domain domain : values()) {
-            domainSlugs.put(domain.slug, domain);
-        }
+        int step = 0;
 
-        DOMAIN_SLUGS = domainSlugs;
+        MATH = step++;
+        SCIENCE = step++;
+        FINANCE = step++;
+        HUMANITIES = step++;
+        COMPUTER_SCIENCE = step++;
+        TEST_PREP = step++;
+        PARTNER_CONTENT = step++;
+        DEFAULT = step;
     }
 
-    public final String slug;
+    private static final Map<String, Integer> DOMAIN_SLUGS = new HashMap<>();
 
-    public static Domain getDomainBySlug(final String slug) {
-        final Domain maybeDomain = DOMAIN_SLUGS.get(slug);
+    static {
+        DOMAIN_SLUGS.put("math", MATH);
+        DOMAIN_SLUGS.put("science", SCIENCE);
+        DOMAIN_SLUGS.put("economics-finance-domain", FINANCE);
+        DOMAIN_SLUGS.put("humanities", HUMANITIES);
+        DOMAIN_SLUGS.put("computing", COMPUTER_SCIENCE);
+        DOMAIN_SLUGS.put("test-prep", TEST_PREP);
+        DOMAIN_SLUGS.put("partner-content", PARTNER_CONTENT);
+        DOMAIN_SLUGS.put("default", DEFAULT);
+    }
+
+    public static int getDomainBySlug(final String slug) {
+        final Integer maybeDomain = DOMAIN_SLUGS.get(slug);
         if (maybeDomain == null) {
             return DEFAULT;
         } else {
@@ -35,7 +48,13 @@ public enum Domain {
         }
     }
 
-    Domain(final String slug) {
-        this.slug = slug;
+    public static String getSlugForDomain(final int domain) {
+        for (final String slug : DOMAIN_SLUGS.keySet()) {
+            if (DOMAIN_SLUGS.get(slug) == domain) {
+                return slug;
+            }
+        }
+
+        throw new IllegalArgumentException("Invalid domain: " + domain);
     }
 }

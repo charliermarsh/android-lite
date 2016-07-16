@@ -5,13 +5,13 @@ import static org.khanacademy.androidlite.Utils.checkNotNull;
 public abstract class Node {
     public final String slug;
     public final String title;
-    public final Domain domain;
+    public final int domain;
 
-    public abstract Kind kind();
+    public abstract int kind();
 
-    public Node(final String slug, final String title, final Domain domain) {
+    public Node(final String slug, final String title, final int domain) {
         this.slug = checkNotNull(slug);
         this.title = checkNotNull(title);
-        this.domain = checkNotNull(domain);
+        this.domain = domain;
     }
 }

@@ -1,10 +1,8 @@
 package org.khanacademy.androidlite;
 
-/**
- * Created by charliemarsh on 7/14/16.
- */
+public final class Kind {
+    private Kind() {}
 
-public enum Kind {
-    TOPIC,
-    CONTENT_ITEM
+    public static final int TOPIC = 0;
+    public static final int CONTENT_ITEM = 1;
 }
