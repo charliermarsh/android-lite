@@ -5,4 +5,6 @@
 
     <dimen name="node_row_padding_vertical">12dp</dimen>
     <dimen name="node_row_padding_horizontal">10dp</dimen>
+
+    <integer name="slide_gravity">5</integer>
 </resources>

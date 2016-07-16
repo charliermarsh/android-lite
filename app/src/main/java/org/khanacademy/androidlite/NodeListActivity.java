@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -22,13 +24,16 @@ public class NodeListActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_node_list);
 
+        // Set the title in the app bar.
         final String title = getIntent().getStringExtra(Keys.TITLE);
         if (title != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             getActionBar().setTitle(title);
         }
 
+        // Fetch the JSON.
         final String parentSlug = getIntent().getStringExtra(Keys.PARENT_SLUG);
         final String path = parentSlug == null ? "/subjects" : "/topic/" + parentSlug;
 
@@ -81,7 +86,15 @@ public class NodeListActivity extends Activity {
     }
 
     private void navigateToTopic(final Topic topic) {
-        startActivity(IntentCreator.forTopic(topic, this));
+        final Intent intent = IntentCreator.forTopic(topic, this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(
+                    intent,
+                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+            );
+        } else {
+            startActivity(intent);
+        }
     }
 
     private void navigateToContentItem(final ContentItem contentItem) {
