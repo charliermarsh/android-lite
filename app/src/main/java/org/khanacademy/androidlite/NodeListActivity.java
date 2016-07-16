@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -15,12 +16,18 @@ public class NodeListActivity extends Activity {
     static final class Keys {
         static final String PARENT_DOMAIN_SLUG = "parentDomainSlug";
         static final String PARENT_SLUG = "parentSlug";
+        static final String TITLE = "title";
     }
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_node_list);
+
+        final String title = getIntent().getStringExtra(Keys.TITLE);
+        if (title != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            getActionBar().setTitle(title);
+        }
 
         final String parentSlug = getIntent().getStringExtra(Keys.PARENT_SLUG);
         final String path = parentSlug == null ? "/subjects" : "/topic/" + parentSlug;
