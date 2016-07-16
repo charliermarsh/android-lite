@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="android:Theme.Material.Light">
-        <!-- enable window content transitions -->
+        <!-- Transitions. -->
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/slide</item>
+
+        <!-- UI Theming. -->
+        <item name="android:colorPrimary">@color/control_tinted</item>
+        <item name="android:colorPrimaryDark">@color/control_tinted_pressed</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
     </style>
-    <style name="VideoTheme" parent="android:Theme.Material.Light.NoActionBar.Fullscreen" />
+    <style name="VideoTheme" parent="android:Theme.Material.Light.NoActionBar.Fullscreen">
+        <!-- Seekbar theming. -->
+        <item name="android:progressTint">@color/control_tinted</item>
+        <item name="android:colorControlActivated">@color/control_tinted</item>
+        <item name="android:thumbTint">@color/control_tinted_pressed</item>
+    </style>
 </resources>
