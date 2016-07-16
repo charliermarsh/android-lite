@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class NodeListActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_node_list);
+
+        setActionBar((Toolbar) findViewById(R.id.toolbar));
 
         // Set the title in the app bar.
         final String title = getIntent().getStringExtra(Keys.TITLE);

@@ -1,9 +1,6 @@
 package org.khanacademy.androidlite;
 
-import static org.khanacademy.androidlite.Utils.checkNotNull;
-
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.net.http.HttpResponseCache;
 import android.os.Build;
@@ -22,12 +19,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            final ActionBar actionBar = checkNotNull(getActionBar());
-            actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//            final ActionBar actionBar = checkNotNull(getActionBar());
+//            actionBar.setDisplayUseLogoEnabled(true);
+//            actionBar.setDisplayShowTitleEnabled(false);
+//        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             enableHttpResponseCache();
