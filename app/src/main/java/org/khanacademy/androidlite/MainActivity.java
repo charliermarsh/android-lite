@@ -14,7 +14,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainActivity extends Activity {
+public final class MainActivity extends Activity {
     private final Timer mCacheReportingTimer = new Timer();
 
     @Override

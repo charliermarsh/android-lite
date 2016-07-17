@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-public class VideoActivity extends Activity {
+public final class VideoActivity extends Activity {
     static final class Keys {
         static final String TITLE = "title";
         static final String YOUTUBE_ID = "youtubeId";

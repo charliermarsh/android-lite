@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-public class NodeListActivity extends Activity {
+public final class NodeListActivity extends Activity {
     private static final int MAX_PRE_FETCHED_TOPICS = 5;
 
     static final class Keys {

@@ -1,48 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="logo">#FF26313C</color>
     <color name="control_tinted">#FF78C008</color>
     <color name="control_tinted_pressed">#FF6CAD07</color>
     <color name="page_bg">#FFFAFAFA</color>
 
     <!-- Topic tree palette. -->
-    <color name="math_dark">#FF11ACCD</color>
-    <color name="math_light">#FF63D9EA</color>
     <color name="math_text">#FF007D96</color>
     <color name="math_pressed">#FF085566</color>
 
-    <color name="science_dark">#FFCA337C</color>
-    <color name="science_light">#FFFF92C6</color>
     <color name="science_text">#FF9E034E</color>
     <color name="science_pressed">#FF6B0235</color>
 
-    <color name="computer_science_dark">#FF1FAB54</color>
-    <color name="computer_science_light">#FF74CF70</color>
     <color name="computer_science_text">#FF0D923F</color>
     <color name="computer_science_pressed">#FF085E29</color>
 
-    <color name="finance_dark">#FFE07D10</color>
-    <color name="finance_light">#FFFFBE26</color>
     <color name="finance_text">#FFA75A05</color>
     <color name="finance_pressed">#FF953C02</color>
 
-    <color name="humanities_dark">#FFE84D39</color>
-    <color name="humanities_light">#FFFF8482</color>
     <color name="humanities_text">#FFBE2612</color>
     <color name="humanities_pressed">#FF8C1C0D</color>
 
-    <color name="partner_content_dark">#FF01A995</color>
-    <color name="partner_content_light">#FF01D1C1</color>
     <color name="partner_content_text">#FF208170</color>
     <color name="partner_content_pressed">#FF144F44</color>
 
-    <color name="test_prep_dark">#FF7853AB</color>
-    <color name="test_prep_light">#FFAA87FF</color>
     <color name="test_prep_text">#FF543B78</color>
     <color name="test_prep_pressed">#FF302245</color>
 
-    <color name="default_dark">#FF134EA3</color>
-    <color name="default_light">#FF66AFE9</color>
     <color name="default_text">#FF00457C</color>
     <color name="default_pressed">#FF00294A</color>
 </resources>
