@@ -25,6 +25,8 @@
         android:gravity="center_vertical|left"
         android:textAppearance="@style/TextAppearance.Title.Bold"
         android:visibility="gone"
+        android:maxLines="1"
+        android:ellipsize="end"
         tools:text="Early Math"
         />
 
