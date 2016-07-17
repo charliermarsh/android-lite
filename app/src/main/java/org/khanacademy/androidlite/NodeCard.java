@@ -43,13 +43,17 @@ public class NodeCard extends FrameLayout {
 
             mNodeNameView.setTextColor(colorPalette.text);
         } else {
-            final StateListDrawable stateListDrawable = (StateListDrawable) getBackground();
+            final StateListDrawable stateListDrawable = new StateListDrawable();
             stateListDrawable.addState(
                     new int[]{android.R.attr.state_pressed},
                     new ColorDrawable(colorPalette.pressed)
             );
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                setBackground(stateListDrawable);
+            } else {
+                setBackgroundDrawable(stateListDrawable);
+            }
 
-            // TODO(charlie): Dynamic text coloration doesn't seem to work on API 13 and below.
             mNodeNameView.setTextColor(new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_pressed},

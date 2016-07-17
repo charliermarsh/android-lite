@@ -8,7 +8,6 @@
         <!-- UI Theming. -->
         <item name="android:colorPrimary">@color/control_tinted</item>
         <item name="android:colorPrimaryDark">@color/control_tinted_pressed</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
     </style>
     <style name="VideoTheme" parent="android:Theme.Material.Light.NoActionBar.Fullscreen">
         <!-- Seekbar theming. -->
