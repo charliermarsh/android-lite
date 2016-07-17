@@ -25,6 +25,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    splits {
+
+        density {
+            enable true
+            exclude 'ldpi', 'tvdpi', 'xxxhdpi'
+//alternatively use the following two lines to only include:
+//            reset()
+//            include 'mdpi', 'hdpi', 'xhdpi', 'xxhdpi'
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+        }
+    }
 }
 
 dependencies {
