@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import java.util.List;
@@ -26,15 +27,29 @@ public class NodeListActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_node_list);
 
-        setActionBar((Toolbar) findViewById(R.id.toolbar));
-
-        // Set the title in the app bar.
         final String title = getIntent().getStringExtra(Keys.TITLE);
-        if (title != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            getActionBar().setTitle(title);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // If we have full control over the toolbar, show the logo when appropriate, but
+            // otherwise hide it in favor of a title.
+            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            if (title != null) {
+                toolbar.findViewById(R.id.title).setVisibility(View.VISIBLE);
+                toolbar.findViewById(R.id.logo).setVisibility(View.GONE);
+                ((TextView) toolbar.findViewById(R.id.title)).setText(title);
+            } else {
+                toolbar.findViewById(R.id.title).setVisibility(View.GONE);
+                toolbar.findViewById(R.id.logo).setVisibility(View.VISIBLE);
+            }
+
+            setActionBar(toolbar);
+            getActionBar().setDisplayShowTitleEnabled(false);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // Otherwise, set the title as long as we have the ability to do so.
+            if (title != null) {
+                getActionBar().setTitle(title);
+            }
         }
 
         fetchData();
