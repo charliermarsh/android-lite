@@ -10,13 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
 import java.util.List;
 
 public class NodeListActivity extends Activity {
-    private static final int MAX_PREFETCHED_TOPICS = 5;
+    private static final int MAX_PRE_FETCHED_TOPICS = 5;
 
     static final class Keys {
         static final String PARENT_DOMAIN_SLUG = "parentDomainSlug";
@@ -33,15 +31,8 @@ public class NodeListActivity extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // If we have full control over the toolbar, show the logo when appropriate, but
             // otherwise hide it in favor of a title.
-            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            if (title != null) {
-                toolbar.findViewById(R.id.title).setVisibility(View.VISIBLE);
-                toolbar.findViewById(R.id.logo).setVisibility(View.GONE);
-                ((TextView) toolbar.findViewById(R.id.title)).setText(title);
-            } else {
-                toolbar.findViewById(R.id.title).setVisibility(View.GONE);
-                toolbar.findViewById(R.id.logo).setVisibility(View.VISIBLE);
-            }
+            final KaToolbar toolbar = (KaToolbar) findViewById(R.id.toolbar);
+            toolbar.updateData(title);
 
             setActionBar(toolbar);
             getActionBar().setDisplayShowTitleEnabled(false);
@@ -95,7 +86,7 @@ public class NodeListActivity extends Activity {
         );
 
         // Prefetch a few of the child nodes.
-        final int numNodesToPrefetch = Math.min(nodes.size(), MAX_PREFETCHED_TOPICS);
+        final int numNodesToPrefetch = Math.min(nodes.size(), MAX_PRE_FETCHED_TOPICS);
         for (final Node node : nodes.subList(0, numNodesToPrefetch)) {
             if (node.kind() == Kind.TOPIC) {
                 JsonFetcher.prefetchJson(UrlBuilder.forPath("/topic/" + node.slug));

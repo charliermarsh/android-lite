@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="logo">#FF26313C</color>
     <color name="control_tinted">#FF78C008</color>
     <color name="control_tinted_pressed">#FF6CAD07</color>
     <color name="page_bg">#FFFAFAFA</color>
