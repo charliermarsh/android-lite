@@ -1,6 +1,6 @@
 <resources>
     <dimen name="node_row_padding_vertical">16dp</dimen>
     <dimen name="node_row_padding_horizontal">16dp</dimen>
-    <dimen name="node_icon_size">48dp</dimen>
+    <dimen name="retry_button_size">56dp</dimen>
     <integer name="slide_gravity">5</integer>
 </resources>

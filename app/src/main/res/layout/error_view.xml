@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Error fetching data"
+            android:text="Error fetching data."
             android:textAppearance="@style/TextAppearance.Title"
             />
 
@@ -25,14 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Please try again"
+            android:text="Please try again."
             android:textAppearance="@style/TextAppearance.SubTitle"
             />
 
         <Button
             android:id="@+id/retry_button"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/retry_button_size"
+            android:layout_height="@dimen/retry_button_size"
             android:layout_gravity="center"
             android:background="@drawable/ic_refresh"
             />

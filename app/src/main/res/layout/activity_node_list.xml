@@ -18,16 +18,17 @@
             layout="@layout/toolbar"
             />
 
-        <include
+        <ListView
             android:id="@+id/nodes_view"
-            layout="@layout/node_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             />
 
     </LinearLayout>
 
     <include
         android:id="@+id/error_view"
-        android:visibility="gone"
         layout="@layout/error_view"
+        android:visibility="gone"
         />
 </FrameLayout>
