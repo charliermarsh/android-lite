@@ -2,6 +2,7 @@
 <resources>
     <color name="control_tinted">#FF78C008</color>
     <color name="control_tinted_pressed">#FF6CAD07</color>
+    <color name="page_bg">#FFFAFAFA</color>
 
     <!-- Topic tree palette. -->
     <color name="math_dark">#FF11ACCD</color>

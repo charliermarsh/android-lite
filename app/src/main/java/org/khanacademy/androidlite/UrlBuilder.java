@@ -16,14 +16,6 @@ public final class UrlBuilder {
         }
     }
 
-    public static URL forThumbnail(final String path) {
-        try {
-            return new URL(BASE_URL + "/thumbnail/" + path);
-        } catch (final MalformedURLException e) {
-            throw new RuntimeException("Invalid extension: " + path);
-        }
-    }
-
     public static String forYoutubeId(final String youtubeId) {
         return String.format(MP4_DOWNLOAD_URL_TEMPLATE, youtubeId, youtubeId);
     }

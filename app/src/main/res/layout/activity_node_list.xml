@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
     >
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        />
+    <LinearLayout
+        android:id="@+id/content_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            />
+
+        <include
+            android:id="@+id/nodes_view"
+            layout="@layout/node_list_view"
+            />
+
+    </LinearLayout>
 
     <include
-        android:id="@+id/nodes_view"
-        layout="@layout/node_list_view"
+        android:id="@+id/error_view"
+        android:visibility="gone"
+        layout="@layout/error_view"
         />
-
-</LinearLayout>
+</FrameLayout>

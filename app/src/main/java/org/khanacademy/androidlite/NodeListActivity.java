@@ -8,6 +8,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
@@ -36,6 +37,10 @@ public class NodeListActivity extends Activity {
             getActionBar().setTitle(title);
         }
 
+        fetchData();
+    }
+
+    private void fetchData() {
         // Fetch the JSON.
         final String parentSlug = getIntent().getStringExtra(Keys.PARENT_SLUG);
         final String path = parentSlug == null ? "/subjects" : "/topic/" + parentSlug;
@@ -43,23 +48,32 @@ public class NodeListActivity extends Activity {
         JsonFetcher.fetchJsonAsync(
                 UrlBuilder.forPath(path),
                 jsonObject -> {
-                    // Parse the list of topics.
-                    try {
-                        final JSONArray topicsJsonArray = jsonObject.getJSONArray("topics");
-                        final NodeListJsonDecoder jsonDecoder = new NodeListJsonDecoder();
-                        final List<Node> nodes = jsonDecoder.fromJson(topicsJsonArray);
+                    if (jsonObject != null) {
+                        // Parse the list of topics.
+                        try {
+                            final JSONArray topicsJsonArray = jsonObject.getJSONArray("topics");
+                            final NodeListJsonDecoder jsonDecoder = new NodeListJsonDecoder();
+                            final List<Node> nodes = jsonDecoder.fromJson(topicsJsonArray);
 
-                        onNodesFetched(nodes);
-                    } catch (final JSONException e) {
-                        throw new RuntimeException(
-                                "Failed to find children at path: " + path, e
-                        );
+                            onNodesFetched(nodes);
+                        } catch (final JSONException e) {
+                            throw new RuntimeException(
+                                    "Failed to find children at path: " + path, e
+                            );
+                        }
+                    } else {
+                        onError();
                     }
                 }
         );
     }
 
     private void onNodesFetched(final List<Node> nodes) {
+        // Hide the error view.
+        final ErrorView errorView = (ErrorView) findViewById(R.id.error_view);
+        errorView.setVisibility(View.GONE);
+
+        // Display the nodes.
         final ListView nodesView = (ListView) findViewById(R.id.nodes_view);
         nodesView.setAdapter(
                 new NodesAdapter(this, nodes, this::onNodeSelected)
@@ -72,6 +86,16 @@ public class NodeListActivity extends Activity {
                 JsonFetcher.prefetchJson(UrlBuilder.forPath("/topic/" + node.slug));
             }
         }
+    }
+
+    private void onError() {
+        final ErrorView errorView = (ErrorView) findViewById(R.id.error_view);
+
+        // Make the error view visible.
+        errorView.setVisibility(View.VISIBLE);
+
+        // Set the retry handler.
+        errorView.updateData(this::fetchData);
     }
 
     private void onNodeSelected(final Node node) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.khanacademy.androidlite.ErrorView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Error fetching data"
+            android:textAppearance="@style/TextAppearance.Title"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Please try again"
+            android:textAppearance="@style/TextAppearance.SubTitle"
+            />
+
+        <Button
+            android:id="@+id/retry_button"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_refresh"
+            />
+
+    </LinearLayout>
+
+</org.khanacademy.androidlite.ErrorView>

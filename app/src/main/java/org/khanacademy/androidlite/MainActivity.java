@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainActivity extends Activity {
+    private final Timer mCacheReportingTimer = new Timer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,8 @@ public class MainActivity extends Activity {
             }
         }
 
+        mCacheReportingTimer.cancel();
+
         super.onStop();
     }
 
@@ -61,10 +65,9 @@ public class MainActivity extends Activity {
 
         // Report on the cache status periodically.
         final Logger cacheLogger = Logger.getLogger(HttpResponseCache.class.getSimpleName());
-        final Timer reportingTimer = new Timer();
         final long initialDelayMs = 1000;
-        final long periodMs = 3000;
-        reportingTimer.schedule(new TimerTask() {
+        final long periodMs = 10000;
+        mCacheReportingTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 cacheLogger.log(
