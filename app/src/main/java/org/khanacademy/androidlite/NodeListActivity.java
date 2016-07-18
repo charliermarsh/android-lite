@@ -63,9 +63,7 @@ public final class NodeListActivity extends Activity {
 
                             onNodesFetched(nodes);
                         } catch (final JSONException e) {
-                            throw new RuntimeException(
-                                    "Failed to find children at path: " + path, e
-                            );
+                            throw new RuntimeException(e);
                         }
                     } else {
                         onError();
@@ -112,10 +110,7 @@ public final class NodeListActivity extends Activity {
 
             case Kind.CONTENT_ITEM:
                 navigateToContentItem((ContentItem) node);
-                return;
         }
-
-        throw new IllegalArgumentException("Invalid node kind: " + node.kind());
     }
 
     private void navigateToTopic(final Topic topic) {

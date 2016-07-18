@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class JsonFetcher {
     private static final int TIMEOUT_MS = 10000;
@@ -21,9 +19,6 @@ public final class JsonFetcher {
     }
 
     public static JSONObject fetchJson(final URL url) throws IOException, JSONException {
-        final Logger jsonLogger = Logger.getLogger(JsonFetcher.class.getSimpleName());
-        jsonLogger.log(Level.INFO, "Fetching JSON at URL: " + url);
-
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(TIMEOUT_MS);
@@ -49,7 +44,7 @@ public final class JsonFetcher {
                     return new JSONObject(builder.toString());
             }
 
-            throw new IOException("Bad response: " + connection.getResponseCode());
+            throw new IOException(String.valueOf(connection.getResponseCode()));
         } finally {
             connection.disconnect();
         }
@@ -69,10 +64,6 @@ public final class JsonFetcher {
 
         @Override
         protected JSONObject doInBackground(final URL... urls) {
-            if (urls.length != 1) {
-                throw new RuntimeException("Invalid number of URLs: " + urls.length);
-            }
-
             try {
                 return JsonFetcher.fetchJson(urls[0]);
             } catch (final IOException | JSONException e) {

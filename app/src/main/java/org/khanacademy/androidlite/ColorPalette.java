@@ -55,6 +55,6 @@ public final class ColorPalette {
             );
         }
 
-        throw new IllegalArgumentException("Invalid domain: " + domain);
+        throw new IllegalArgumentException(String.valueOf(domain));
     }
 }

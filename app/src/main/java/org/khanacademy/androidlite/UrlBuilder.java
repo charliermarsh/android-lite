@@ -12,7 +12,7 @@ public final class UrlBuilder {
         try {
             return new URL(BASE_URL + path);
         } catch (final MalformedURLException e) {
-            throw new RuntimeException("Invalid extension: " + path);
+            throw new RuntimeException(e);
         }
     }
 

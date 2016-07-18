@@ -55,6 +55,6 @@ public final class Domain {
             }
         }
 
-        throw new IllegalArgumentException("Invalid domain: " + domain);
+        throw new IllegalArgumentException(String.valueOf(domain));
     }
 }
